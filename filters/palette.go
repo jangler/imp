@@ -11,8 +11,7 @@ import (
 
 var paletteHelp = `palette file
 
-The palette filter replaces the colors in the working image with the colors
-in the palette read from image 'file'.`
+Replace the colors in the working image with the colors used in image 'file'.`
 
 // Returns true if the color is transparent, false if it is opaque.
 func transparent(c color.Color) bool {

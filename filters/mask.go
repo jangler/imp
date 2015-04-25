@@ -10,8 +10,8 @@ import (
 
 var maskHelp = `mask file
 
-The mask filter multiplies the alpha channel of the working image by the alpha
-channel from image 'file'. The images must have the same dimensions.`
+Multiply the alpha channel of the working image by the alpha channel from image
+'file'. The images must have the same dimensions.`
 
 // Filter function.
 func mask(img *image.RGBA, args []string) []string {

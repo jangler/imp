@@ -12,8 +12,8 @@ import (
 
 var lumHelp = `lum factor [gFactor bFactor [aFactor]]
 
-The lum filter multiplies the brightness of the image by the given factor.
-Individual factors may be given for each channel.`
+Multiply the brightness of the image by the given factor. Individual factors
+may be given for each channel.`
 
 // Filter function.
 func lum(img *image.RGBA, args []string) []string {
