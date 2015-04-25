@@ -21,6 +21,7 @@ Usage
 	Filters are applied in the given order and may be invoked multiple times.
 
 	Filters:
+		crop x y w h
 		lum factor [gFactor bFactor [aFactor]]
 		mask file
 		palette file
