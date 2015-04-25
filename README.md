@@ -25,3 +25,4 @@ Usage
 		lum factor [gFactor bFactor [aFactor]]
 		mask file
 		palette file
+		rotate degrees
