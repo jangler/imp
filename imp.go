@@ -35,8 +35,8 @@ func usage(status int) {
 		"multiple times.")
 	fmt.Println()
 	fmt.Println("Filters:")
-	for _, name := range filter.Names {
-		fmt.Printf("    %s\n", strings.Split(filter.Helps[name], "\n")[0])
+	for _, f := range filter.List {
+		fmt.Printf("    %s\n", strings.Split(f.Help, "\n")[0])
 	}
 	os.Exit(status)
 }
@@ -77,11 +77,11 @@ func main() {
 	}
 	if os.Args[1] == "help" {
 		if len(os.Args) >= 3 {
-			text, ok := filter.Helps[os.Args[2]]
-			if !ok {
+			f := filter.Map[os.Args[2]]
+			if f == nil {
 				util.Die(errors.New("unknown filter: " + os.Args[2]))
 			}
-			fmt.Println(text)
+			fmt.Println(f.Help)
 			os.Exit(0)
 		}
 		usage(0)
@@ -126,11 +126,11 @@ func main() {
 	}
 
 	for len(args) > 0 {
-		fun := filter.Functions[args[0]]
-		if fun == nil {
+		f := filter.Map[args[0]]
+		if f == nil {
 			util.Die(errors.New("unknown filter: " + args[0]))
 		}
-		args = fun(img, args[1:])
+		img, args = f.Func(img, args[1:])
 	}
 
 	writeImage(img, outfilePath)

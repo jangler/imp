@@ -68,14 +68,12 @@ func indexOf(c color.Color, colors []color.Color) (int, error) {
 	return 0, errors.New("color not in slice")
 }
 
-// Filter function.
-func palette(img *image.RGBA, args []string) []string {
+func paletteFunc(img *image.RGBA, args []string) (*image.RGBA, []string) {
 	oldPalette := getPalette(img)
 	if len(args) == 0 {
 		util.Die(errors.New(paletteHelp))
 	}
 	newPalette := getPalette(util.ReadImage(args[0]))
-	args = args[1:]
 
 	ratio := float64(len(newPalette)) / float64(len(oldPalette))
 
@@ -90,5 +88,9 @@ func palette(img *image.RGBA, args []string) []string {
 		}
 	}
 
-	return args
+	return img, args[1:]
+}
+
+func init() {
+	addFilter(&Filter{"palette", paletteHelp, paletteFunc})
 }

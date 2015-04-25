@@ -13,8 +13,7 @@ var maskHelp = `mask file
 Multiply the alpha channel of the working image by the alpha channel from
 another image file. The images must have the same dimensions.`
 
-// Filter function.
-func mask(img *image.RGBA, args []string) []string {
+func maskFunc(img *image.RGBA, args []string) (*image.RGBA, []string) {
 	if len(args) == 0 {
 		util.Die(errors.New(maskHelp))
 	}
@@ -42,6 +41,9 @@ func mask(img *image.RGBA, args []string) []string {
 		}
 	}
 
-	args = args[1:]
-	return args
+	return img, args[1:]
+}
+
+func init() {
+	addFilter(&Filter{"mask", maskHelp, maskFunc})
 }

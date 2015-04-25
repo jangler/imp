@@ -15,8 +15,7 @@ var lumHelp = `lum factor [gFactor bFactor [aFactor]]
 Multiply the brightness of the image by the given factor. Individual factors
 may be given for each channel.`
 
-// Filter function.
-func lum(img *image.RGBA, args []string) []string {
+func lumFunc(img *image.RGBA, args []string) (*image.RGBA, []string) {
 	numArgs := 0
 	factor := []float64{1.0, 1.0, 1.0, 1.0}
 	for numArgs < 4 && len(args) > 0 {
@@ -49,5 +48,9 @@ func lum(img *image.RGBA, args []string) []string {
 		}
 	}
 
-	return args
+	return img, args
+}
+
+func init() {
+	addFilter(&Filter{"lum", lumHelp, lumFunc})
 }
