@@ -9,6 +9,7 @@ import (
 	"image/png"
 	"os"
 	"path/filepath"
+	"runtime"
 	"strconv"
 	"strings"
 
@@ -16,6 +17,7 @@ import (
 	"github.com/jangler/imp/util"
 )
 
+var version = []int{0, 0, 0}
 var quality = 100
 
 // Prints usage information and exits with the given status.
@@ -23,6 +25,7 @@ func usage(status int) {
 	fmt.Println("Usage:")
 	fmt.Printf("    %s infile [-q n] [outfile] [filter ...]\n", os.Args[0])
 	fmt.Printf("    %s help [filter]\n", os.Args[0])
+	fmt.Printf("    %s version\n", os.Args[0])
 	fmt.Println()
 	fmt.Println("Applies filters to the image 'infile' and writes the result " +
 		"to 'outfile'.")
@@ -75,7 +78,8 @@ func main() {
 	if len(os.Args) < 2 {
 		usage(1)
 	}
-	if os.Args[1] == "help" {
+	switch os.Args[1] {
+	case "help":
 		if len(os.Args) >= 3 {
 			f := filter.Map[os.Args[2]]
 			if f == nil {
@@ -85,6 +89,10 @@ func main() {
 			os.Exit(0)
 		}
 		usage(0)
+	case "version":
+		fmt.Printf("%s version %d.%d.%d %s/%s\n", os.Args[0], version[0],
+			version[1], version[2], runtime.GOOS, runtime.GOARCH)
+		os.Exit(0)
 	}
 
 	// Parse -q option

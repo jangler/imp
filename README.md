@@ -12,6 +12,7 @@ Usage
 	Usage:
 		imp infile [-q n] [outfile] [filter ...]
 		imp help [filter]
+		imp version
 
 	Applies filters to the image 'infile' and writes the result to 'outfile'.
 	If 'outfile' is not given, 'infile' is overwritten.
