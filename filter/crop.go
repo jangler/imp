@@ -10,7 +10,7 @@ import (
 
 var cropHelp = `crop x y w h
 
-Resizes the image canvas to start at (x, y) pixels relative to the top-left
+Resize the image canvas to start at (x, y) pixels relative to the top-left
 corner of the working image, and be w by h pixels in size. It is possible to
 enlarge the canvas in this way; pixels that were beyond the borders of the
 working image will be blank.`
