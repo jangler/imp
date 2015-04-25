@@ -5,6 +5,13 @@ import (
 	"image"
 )
 
+// Names is a sorted list of filter names.
+var Names = []string{
+	"lum",
+	"mask",
+	"palette",
+}
+
 // Functions is a map of filter names to their respective functions.
 var Functions = map[string]func(*image.RGBA, []string) []string{
 	"lum":     lum,

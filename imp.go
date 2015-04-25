@@ -26,8 +26,8 @@ func usage(status int) {
 	fmt.Println("If 'outfile' is not given, 'infile' is overwritten.")
 	fmt.Println()
 	fmt.Println("Filters:")
-	for _, text := range filters.Helps {
-		fmt.Printf("    %s\n", strings.Split(text, "\n")[0])
+	for _, name := range filters.Names {
+		fmt.Printf("    %s\n", strings.Split(filters.Helps[name], "\n")[0])
 	}
 	os.Exit(status)
 }
