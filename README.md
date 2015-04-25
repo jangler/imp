@@ -10,11 +10,15 @@ Installation
 Usage
 -----
 	Usage:
-		imp infile [outfile] [filter ...]
+		imp infile [-q n] [outfile] [filter ...]
 		imp help [filter]
 
 	Applies filters to the image 'infile' and writes the result to 'outfile'.
 	If 'outfile' is not given, 'infile' is overwritten.
+
+	The -q option, if given, controls JPEG quality (1-100). The default is 100.
+
+	Filters are applied in the given order and may be invoked multiple times.
 
 	Filters:
 		lum factor [gFactor bFactor [aFactor]]

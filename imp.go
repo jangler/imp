@@ -9,21 +9,30 @@ import (
 	"image/png"
 	"os"
 	"path/filepath"
+	"strconv"
 	"strings"
 
 	"github.com/jangler/imp/filters"
 	"github.com/jangler/imp/util"
 )
 
+var quality = 100
+
 // Prints usage information and exits with the given status.
 func usage(status int) {
 	fmt.Println("Usage:")
-	fmt.Printf("    %s infile [outfile] [filter ...]\n", os.Args[0])
+	fmt.Printf("    %s infile [-q n] [outfile] [filter ...]\n", os.Args[0])
 	fmt.Printf("    %s help [filter]\n", os.Args[0])
 	fmt.Println()
 	fmt.Println("Applies filters to the image 'infile' and writes the result " +
 		"to 'outfile'.")
 	fmt.Println("If 'outfile' is not given, 'infile' is overwritten.")
+	fmt.Println()
+	fmt.Println("The -q option, if given, controls JPEG quality (1-100). " +
+		"The default is 100.")
+	fmt.Println()
+	fmt.Println("Filters are applied in the given order and may be invoked " +
+		"multiple times.")
 	fmt.Println()
 	fmt.Println("Filters:")
 	for _, name := range filters.Names {
@@ -54,7 +63,7 @@ func writeImage(img image.Image, filename string) {
 	if extMatch(filename, ".gif") {
 		gif.Encode(file, img, &gif.Options{256, nil, nil})
 	} else if extMatch(filename, ".jpg", ".jpeg") {
-		jpeg.Encode(file, img, &jpeg.Options{100})
+		jpeg.Encode(file, img, &jpeg.Options{quality})
 	} else if extMatch(filename, ".png") {
 		png.Encode(file, img)
 	} else {
@@ -67,9 +76,7 @@ func main() {
 		usage(1)
 	}
 	if os.Args[1] == "help" {
-		if len(os.Args) > 3 {
-			usage(1)
-		} else if len(os.Args) == 3 {
+		if len(os.Args) >= 3 {
 			text, ok := filters.Helps[os.Args[2]]
 			if !ok {
 				util.Die(errors.New("unknown filter: " + os.Args[2]))
@@ -78,6 +85,22 @@ func main() {
 			os.Exit(0)
 		}
 		usage(0)
+	}
+
+	// Parse -q option
+	for i, arg := range os.Args {
+		if arg == "-q" {
+			if i == len(os.Args)-1 {
+				usage(1)
+			}
+			n, err := strconv.ParseInt(os.Args[i+1], 10, 0)
+			if err != nil || n < 1 || n > 100 {
+				usage(1)
+			}
+			quality = int(n)
+			os.Args = append(os.Args[:i], os.Args[i+2:]...)
+			break
+		}
 	}
 
 	infilePath := os.Args[1]
