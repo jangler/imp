@@ -24,7 +24,7 @@ func rotateFunc(img *image.RGBA, args []string) (*image.RGBA, []string) {
 	var newImg *image.RGBA
 	b1 := img.Bounds()
 
-	switch (degrees % 360 + 360) % 360 {
+	switch (degrees%360 + 360) % 360 {
 	case 0:
 		newImg = img
 	case 90:

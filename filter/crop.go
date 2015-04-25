@@ -26,7 +26,7 @@ func cropFunc(img *image.RGBA, args []string) (*image.RGBA, []string) {
 			if err != nil {
 				break
 			}
-			if numArgs % 2 == 0 {
+			if numArgs%2 == 0 {
 				dim[numArgs] = int(p / 100 * float64(b1.Dx()))
 			} else {
 				dim[numArgs] = int(p / 100 * float64(b1.Dy()))
