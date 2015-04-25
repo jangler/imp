@@ -17,5 +17,6 @@ Usage
 	If 'outfile' is not given, 'infile' is overwritten.
 
 	Filters:
+		lum factor [gFactor bFactor [aFactor]]
 		mask file
 		palette file

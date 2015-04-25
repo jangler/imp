@@ -16,7 +16,7 @@ image. The images must have the same dimensions.`
 // Filter function.
 func mask(img *image.RGBA, args []string) []string {
 	if len(args) == 0 {
-		util.Die(errors.New(paletteHelp))
+		util.Die(errors.New(maskHelp))
 	}
 	maskImg := util.ReadImage(args[0])
 
@@ -33,10 +33,10 @@ func mask(img *image.RGBA, args []string) []string {
 			r, g, b, _ := img.At(x, y).RGBA()
 			_, _, _, a := maskImg.At(x+dx, y+dy).RGBA()
 			img.SetRGBA(x, y, color.RGBA{
-				uint8(r),
-				uint8(g),
-				uint8(b),
-				uint8(a),
+				uint8(r >> 8),
+				uint8(g >> 8),
+				uint8(b >> 8),
+				uint8(a >> 8),
 			})
 		}
 	}
