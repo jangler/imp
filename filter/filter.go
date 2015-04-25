@@ -1,5 +1,5 @@
-// Package filters contains image filter operations and metadata.
-package filters
+// Package filter contains image filter operations and metadata.
+package filter
 
 import (
 	"image"

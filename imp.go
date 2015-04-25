@@ -12,7 +12,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/jangler/imp/filters"
+	"github.com/jangler/imp/filter"
 	"github.com/jangler/imp/util"
 )
 
@@ -35,8 +35,8 @@ func usage(status int) {
 		"multiple times.")
 	fmt.Println()
 	fmt.Println("Filters:")
-	for _, name := range filters.Names {
-		fmt.Printf("    %s\n", strings.Split(filters.Helps[name], "\n")[0])
+	for _, name := range filter.Names {
+		fmt.Printf("    %s\n", strings.Split(filter.Helps[name], "\n")[0])
 	}
 	os.Exit(status)
 }
@@ -77,7 +77,7 @@ func main() {
 	}
 	if os.Args[1] == "help" {
 		if len(os.Args) >= 3 {
-			text, ok := filters.Helps[os.Args[2]]
+			text, ok := filter.Helps[os.Args[2]]
 			if !ok {
 				util.Die(errors.New("unknown filter: " + os.Args[2]))
 			}
@@ -126,11 +126,11 @@ func main() {
 	}
 
 	for len(args) > 0 {
-		filter := filters.Functions[args[0]]
-		if filter == nil {
+		fun := filter.Functions[args[0]]
+		if fun == nil {
 			util.Die(errors.New("unknown filter: " + args[0]))
 		}
-		args = filter(img, args[1:])
+		args = fun(img, args[1:])
 	}
 
 	writeImage(img, outfilePath)
