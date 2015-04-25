@@ -14,12 +14,6 @@ var paletteHelp = `palette file
 Replace the colors in the working image with the colors used in another image
 file.`
 
-// Returns true if the color is transparent, false if it is opaque.
-func transparent(c color.Color) bool {
-	_, _, _, a := c.RGBA()
-	return a == 0
-}
-
 // ByBrightness implements sort.Interface for []color.Color based on value
 // (brightness).
 type ByBrightness []color.Color
@@ -39,8 +33,9 @@ func getPalette(img image.Image) []color.Color {
 	b := img.Bounds()
 	for x := b.Min.X; x < b.Max.X; x++ {
 		for y := b.Min.Y; y < b.Max.Y; y++ {
-			if !transparent(img.At(x, y)) {
-				allColors = append(allColors, img.At(x, y))
+			c := img.At(x, y)
+			if _, _, _, a := c.RGBA(); a != 0 {
+				allColors = append(allColors, c)
 			}
 		}
 	}
