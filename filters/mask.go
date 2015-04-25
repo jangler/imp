@@ -10,8 +10,8 @@ import (
 
 var maskHelp = `mask file
 
-The mask filter applies the alpha channel from image 'file' to the working
-image. The images must have the same dimensions.`
+The mask filter multiplies the alpha channel of the working image by the alpha
+channel from image 'file'. The images must have the same dimensions.`
 
 // Filter function.
 func mask(img *image.RGBA, args []string) []string {
@@ -30,13 +30,14 @@ func mask(img *image.RGBA, args []string) []string {
 	dx, dy := b2.Min.X-b1.Min.X, b2.Min.Y-b1.Min.Y
 	for y := b1.Min.Y; y < b1.Max.Y; y++ {
 		for x := b1.Min.X; x < b1.Max.X; x++ {
-			r, g, b, _ := img.At(x, y).RGBA()
-			_, _, _, a := maskImg.At(x+dx, y+dy).RGBA()
+			r, g, b, a1 := img.At(x, y).RGBA()
+			_, _, _, a2 := maskImg.At(x+dx, y+dy).RGBA()
+			a := float64(a1) / 0xffff * float64(a2) / 0xffff
 			img.SetRGBA(x, y, color.RGBA{
 				uint8(r >> 8),
 				uint8(g >> 8),
 				uint8(b >> 8),
-				uint8(a >> 8),
+				uint8(a * 0xff),
 			})
 		}
 	}
