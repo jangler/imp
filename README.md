@@ -26,3 +26,4 @@ Usage
 		mask file
 		palette file
 		rotate degrees
+		scale w h
