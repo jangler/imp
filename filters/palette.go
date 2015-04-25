@@ -11,7 +11,7 @@ import (
 
 var paletteHelp = `palette file
 
-The palette filter replaces the colors in the original image with the colors
+The palette filter replaces the colors in the working image with the colors
 in the palette read from image 'file'.`
 
 // Returns true if the color is transparent, false if it is opaque.
@@ -80,8 +80,8 @@ func palette(img *image.RGBA, args []string) []string {
 	ratio := float64(len(newPalette)) / float64(len(oldPalette))
 
 	b := img.Bounds()
-	for x := b.Min.X; x < b.Max.X; x++ {
-		for y := b.Min.Y; y < b.Max.Y; y++ {
+	for y := b.Min.Y; y < b.Max.Y; y++ {
+		for x := b.Min.X; x < b.Max.X; x++ {
 			if index, err := indexOf(img.At(x, y), oldPalette); err == nil {
 				img.Set(x, y, newPalette[int(float64(index)*ratio)])
 			} else {

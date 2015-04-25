@@ -96,8 +96,8 @@ func main() {
 	abstractImg := util.ReadImage(infilePath)
 	b := abstractImg.Bounds()
 	img := image.NewRGBA(image.Rect(0, 0, b.Dx(), b.Dy()))
-	for x := b.Min.X; x < b.Max.X; x++ {
-		for y := b.Min.Y; y < b.Max.Y; y++ {
+	for y := b.Min.Y; y < b.Max.Y; y++ {
+		for x := b.Min.X; x < b.Max.X; x++ {
 			img.Set(x, y, abstractImg.At(x, y))
 		}
 	}

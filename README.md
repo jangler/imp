@@ -17,4 +17,5 @@ Usage
 	If 'outfile' is not given, 'infile' is overwritten.
 
 	Filters:
+		mask file
 		palette file
