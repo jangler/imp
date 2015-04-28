@@ -5,7 +5,12 @@ writing GIF, JPEG, and PNG files.
 
 Installation
 ------------
+Installing via `go`:
+
 	go get -u github.com/jangler/imp
+
+If you use Arch Linux or a derivative, you may also install via the [AUR
+package](https://aur.archlinux.org/packages/imp/).
 
 Usage
 -----
@@ -23,6 +28,7 @@ Usage
 	
 	Filters:
 	    crop x y w h
+	    join file edge [align]
 	    lum factor [gFactor bFactor [aFactor]]
 	    mask file
 	    palette file
