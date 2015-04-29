@@ -17,7 +17,7 @@ import (
 	"github.com/jangler/imp/util"
 )
 
-var version = []int{1, 0, 0}
+var version = []int{1, 1, 0}
 var quality = 100
 
 // Prints usage information and exits with the given status.

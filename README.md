@@ -49,3 +49,7 @@ Crop an image to its top-right quarter, in-place:
 Scale an image to a 16x16 icon, rotate it 90° clockwise, and tint it dark red:
 
 	imp image.png icon.png scale 16 16 rotate 90 lum 0.75 0.25 0.25
+
+Join several images together:
+
+	imp ne.png result.png join nw.png right join s.png bottom
