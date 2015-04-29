@@ -28,6 +28,7 @@ Usage
 	
 	Filters:
 	    crop x y w h
+	    impose layer file [x y]
 	    join file edge [align]
 	    lum factor [gFactor bFactor [aFactor]]
 	    mask file
