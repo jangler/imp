@@ -69,7 +69,7 @@ func imposeFunc(img *image.RGBA, args []string) (*image.RGBA, []string) {
 	} else {
 		drawImg(img, newImg, int(math.Max(0, float64(xOffset))),
 			int(math.Max(0, float64(yOffset))))
-		drawImg(imposeImg, newImg,int(math.Max(0, float64(-xOffset))),
+		drawImg(imposeImg, newImg, int(math.Max(0, float64(-xOffset))),
 			int(math.Max(0, float64(-yOffset))))
 	}
 
