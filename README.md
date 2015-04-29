@@ -27,6 +27,7 @@ Usage
 	Filters are applied in the given order and may be invoked multiple times.
 	
 	Filters:
+	    blur radius power
 	    crop x y w h
 	    impose layer file [x y]
 	    join file edge [align]

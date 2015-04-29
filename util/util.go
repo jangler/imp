@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"image"
+	"image/draw"
 	"image/gif"
 	"image/jpeg"
 	"image/png"
@@ -39,4 +40,11 @@ func ReadImage(filename string) image.Image {
 	}
 	Die(errors.New("unsupported file type: " + filename))
 	return nil // unreachable
+}
+
+// DrawImg draws one image onto another at a given offset.
+func DrawImg(src image.Image, dst *image.RGBA, x, y int) {
+	pt := image.Point{x, y}
+	r := image.Rectangle{pt, pt.Add(src.Bounds().Size())}
+	draw.Draw(dst, r, src, src.Bounds().Min, draw.Over)
 }

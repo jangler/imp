@@ -3,7 +3,6 @@ package filter
 import (
 	"errors"
 	"image"
-	"image/draw"
 	"math"
 	"strconv"
 
@@ -16,12 +15,6 @@ Layer the working image on top of another image or vice versa. Possible values
 for 'layer' are over and under. Coordinates x and y may be given to offset the
 working image relative to the other image. If coordinates are not given, they
 default to zero and the images are aligned at their top-left corners.`
-
-func drawImg(srcImg image.Image, dstImg *image.RGBA, xOffset, yOffset int) {
-	pt := image.Point{xOffset, yOffset}
-	r := image.Rectangle{pt, pt.Add(srcImg.Bounds().Size())}
-	draw.Draw(dstImg, r, srcImg, srcImg.Bounds().Min, draw.Over)
-}
 
 func imposeFunc(img *image.RGBA, args []string) (*image.RGBA, []string) {
 	if len(args) < 2 {
@@ -62,14 +55,14 @@ func imposeFunc(img *image.RGBA, args []string) (*image.RGBA, []string) {
 	newImg := image.NewRGBA(image.Rect(0, 0, width, height))
 
 	if order == "over" {
-		drawImg(imposeImg, newImg, int(math.Max(0, float64(-xOffset))),
+		util.DrawImg(imposeImg, newImg, int(math.Max(0, float64(-xOffset))),
 			int(math.Max(0, float64(-yOffset))))
-		drawImg(img, newImg, int(math.Max(0, float64(xOffset))),
+		util.DrawImg(img, newImg, int(math.Max(0, float64(xOffset))),
 			int(math.Max(0, float64(yOffset))))
 	} else {
-		drawImg(img, newImg, int(math.Max(0, float64(xOffset))),
+		util.DrawImg(img, newImg, int(math.Max(0, float64(xOffset))),
 			int(math.Max(0, float64(yOffset))))
-		drawImg(imposeImg, newImg, int(math.Max(0, float64(-xOffset))),
+		util.DrawImg(imposeImg, newImg, int(math.Max(0, float64(-xOffset))),
 			int(math.Max(0, float64(-yOffset))))
 	}
 
