@@ -40,13 +40,14 @@ func lumFunc(img *image.RGBA, args []string) (*image.RGBA, []string) {
 		for x := b.Min.X; x < b.Max.X; x++ {
 			r, g, b, a := img.At(x, y).RGBA()
 			newA := uint8(math.Min(255, float64(a>>8)*factor[3]))
+			aRatio := float64(int(newA)<<8) / float64(a)
 			c := color.RGBA{
 				uint8(math.Min(float64(newA),
-					float64(r>>8)*factor[0]*factor[3])),
+					float64(r>>8)*factor[0]*aRatio)),
 				uint8(math.Min(float64(newA),
-					float64(g>>8)*factor[1]*factor[3])),
+					float64(g>>8)*factor[1]*aRatio)),
 				uint8(math.Min(float64(newA),
-					float64(b>>8)*factor[2]*factor[3])),
+					float64(b>>8)*factor[2]*aRatio)),
 				newA,
 			}
 			img.SetRGBA(x, y, c)
