@@ -32,10 +32,11 @@ func maskFunc(img *image.RGBA, args []string) (*image.RGBA, []string) {
 			r, g, b, a1 := img.At(x, y).RGBA()
 			_, _, _, a2 := maskImg.At(x+dx, y+dy).RGBA()
 			a := float64(a1) / 0xffff * float64(a2) / 0xffff
+			aRatio := float64(a) / (float64(a1) / 0xffff)
 			img.SetRGBA(x, y, color.RGBA{
-				uint8(r >> 8),
-				uint8(g >> 8),
-				uint8(b >> 8),
+				uint8(int(float64(r)*aRatio) >> 8),
+				uint8(int(float64(g)*aRatio) >> 8),
+				uint8(int(float64(b)*aRatio) >> 8),
 				uint8(a * 0xff),
 			})
 		}
