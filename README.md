@@ -15,27 +15,27 @@ package](https://aur.archlinux.org/packages/imp/).
 Usage
 -----
 	Usage:
-	    imp infile [-q n] [outfile] [filter ...]
-	    imp help [filter]
-	    imp version
-	
+		imp infile [-q n] [outfile] [filter ...]
+		imp help [filter]
+		imp version
+
 	Applies filters to the image 'infile' and writes the result to 'outfile'.
 	If 'outfile' is not given, 'infile' is overwritten.
-	
+
 	The -q option, if given, controls JPEG quality (1-100). The default is 100.
-	
+
 	Filters are applied in the given order and may be invoked multiple times.
-	
+
 	Filters:
-	    blur radius power
-	    crop x y w h
-	    impose layer file [x y]
-	    join file edge [align]
-	    lum factor [gFactor bFactor [aFactor]]
-	    mask file
-	    palette file
-	    rotate degrees
-	    scale w h
+		blur radius power
+		crop x y w h
+		impose layer file [x y]
+		join file edge [align]
+		lum factor [gFactor bFactor [aFactor]]
+		mask file
+		palette file
+		rotate degrees
+		scale w h
 
 Examples
 --------

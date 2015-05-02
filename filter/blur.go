@@ -6,14 +6,33 @@ import (
 	"image/color"
 	"image/draw"
 	"math"
+	"math/rand"
 	"strconv"
+	"time"
 
 	"github.com/jangler/imp/util"
 )
 
 var blurHelp = `blur radius power
 
-TODO`
+Blur the working image, with a blur radius in pixels and a blur power that
+should be in the range [-1, 1]. A small positive power will produce a normal
+blur, while a large positive power will produce distortions. Negative values
+will produce a different effect altogether.`
+
+func shuffledSeq(n int) []int {
+	a := make([]int, n)
+	for i := range a {
+		a[i] = i
+	}
+
+	for i := range a {
+		j := rand.Intn(i + 1)
+		a[i], a[j] = a[j], a[i]
+	}
+
+	return a
+}
 
 func blurFunc(img *image.RGBA, args []string) (*image.RGBA, []string) {
 	if len(args) < 2 {
@@ -46,8 +65,11 @@ func blurFunc(img *image.RGBA, args []string) (*image.RGBA, []string) {
 		}
 	}
 
-	for y := 0; y < b.Dy(); y++ {
-		for x := 0; x < b.Dx(); x++ {
+	rand.Seed(time.Now().UnixNano())
+	ys := shuffledSeq(b.Dy())
+	for _, y := range ys {
+		xs := shuffledSeq(b.Dx())
+		for _, x := range xs {
 			r := image.Rect(x-rad, y-rad, x+rad, y+rad)
 			c := img.At(x+b.Min.X, y+b.Min.Y)
 			draw.DrawMask(newImg, r, &image.Uniform{c}, image.ZP,
