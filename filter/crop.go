@@ -8,7 +8,7 @@ import (
 	"github.com/jangler/imp/util"
 )
 
-var cropHelp = `crop x y w h
+var cropHelp = `crop <x> <y> <w> <h>
 
 Resize the image canvas to start at (x, y) pixels relative to the top-left
 corner of the working image, and be w by h pixels in size. It is possible to

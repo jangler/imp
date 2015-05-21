@@ -9,7 +9,7 @@ import (
 	"github.com/jangler/imp/util"
 )
 
-var paletteHelp = `palette file
+var paletteHelp = `palette <file>
 
 Replace the colors in the working image with the colors used in another image
 file.`

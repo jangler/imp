@@ -10,7 +10,7 @@ import (
 	"github.com/jangler/imp/util"
 )
 
-var lumHelp = `lum factor [gFactor bFactor [aFactor]]
+var lumHelp = `lum <factor> [<gFactor> <bFactor> [<aFactor>]]
 
 Multiply the brightness of the image by the given factor. Individual factors
 may be given for each channel.`
