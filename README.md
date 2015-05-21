@@ -15,8 +15,8 @@ package](https://aur.archlinux.org/packages/imp/).
 Usage
 -----
 	Usage:
-		imp infile [-q n] [outfile] [filter ...]
-		imp help [filter]
+		imp <infile> [-q <n>] [<outfile>] [<filter> ...]
+		imp help [<filter>]
 		imp version
 
 	Applies filters to the image 'infile' and writes the result to 'outfile'.
@@ -27,15 +27,16 @@ Usage
 	Filters are applied in the given order and may be invoked multiple times.
 
 	Filters:
-		blur radius power
-		crop x y w h
-		impose layer file [x y]
-		join file edge [align]
-		lum factor [gFactor bFactor [aFactor]]
-		mask file
-		palette file
-		rotate degrees
-		scale w h
+		blur <radius> <power>
+		crop <x> <y> <w> <h>
+		impose <layer> <file> [<x> <y>]
+		join <file> <edge> [<align>]
+		lum <factor> [<gFactor> <bFactor> [<aFactor>]]
+		mask <file>
+		palette <file>
+		rotate <degrees>
+		sat <factor>
+		scale <w> <h>
 
 Examples
 --------
