@@ -17,18 +17,19 @@ import (
 	"github.com/jangler/imp/util"
 )
 
-var version = []int{1, 2, 0}
+var version = []int{1, 3, 0}
 var quality = 100
 
 // Prints usage information and exits with the given status.
 func usage(status int) {
 	fmt.Println("Usage:")
-	fmt.Printf("    %s infile [-q n] [outfile] [filter ...]\n", os.Args[0])
-	fmt.Printf("    %s help [filter]\n", os.Args[0])
+	fmt.Printf("    %s <infile> [-q <n>] [<outfile>] [<filter> ...]\n",
+		os.Args[0])
+	fmt.Printf("    %s help [<filter>]\n", os.Args[0])
 	fmt.Printf("    %s version\n", os.Args[0])
 	fmt.Println()
-	fmt.Println("Applies filters to the image 'infile' and writes the result " +
-		"to 'outfile'.")
+	fmt.Println("Applies filters to the image 'infile' and writes the " +
+		"result to 'outfile'.")
 	fmt.Println("If 'outfile' is not given, 'infile' is overwritten.")
 	fmt.Println()
 	fmt.Println("The -q option, if given, controls JPEG quality (1-100). " +

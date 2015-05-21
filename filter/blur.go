@@ -13,7 +13,7 @@ import (
 	"github.com/jangler/imp/util"
 )
 
-var blurHelp = `blur radius power
+var blurHelp = `blur <radius> <power>
 
 Blur the working image, with a blur radius in pixels and a blur power that
 should be in the range [-1, 1]. A small positive power will produce a normal

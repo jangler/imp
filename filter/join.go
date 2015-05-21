@@ -8,7 +8,7 @@ import (
 	"github.com/jangler/imp/util"
 )
 
-var joinHelp = `join file edge [align]
+var joinHelp = `join <file> <edge> [<align>]
 
 Adjoin another image to an edge of the working image. Possible values for 'edge'
 are top, bottom, left, and right. The 'align' argument is used to control which

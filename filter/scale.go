@@ -9,7 +9,7 @@ import (
 	"github.com/jangler/imp/util"
 )
 
-var scaleHelp = `scale w h
+var scaleHelp = `scale <w> <h>
 
 Scale the image to the given width and height in pixels, using nearest-neighbor
 interpolation. If an argument ends in %, it is interpreted as a percentage of

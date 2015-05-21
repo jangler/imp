@@ -8,7 +8,7 @@ import (
 	"github.com/jangler/imp/util"
 )
 
-var rotateHelp = `rotate degrees
+var rotateHelp = `rotate <degrees>
 
 Rotate the image clockwise; 'degrees' must be a multiple of 90.`
 

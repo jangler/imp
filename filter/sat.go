@@ -10,7 +10,7 @@ import (
 	"github.com/jangler/imp/util"
 )
 
-var satHelp = `sat factor
+var satHelp = `sat <factor>
 
 Multiply the saturation of the current image by the given factor. A negative
 factor will effectively invert colors.`

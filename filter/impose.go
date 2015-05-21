@@ -9,7 +9,7 @@ import (
 	"github.com/jangler/imp/util"
 )
 
-var imposeHelp = `impose layer file [x y]
+var imposeHelp = `impose <layer> <file> [<x> <y>]
 
 Layer the working image on top of another image or vice versa. Possible values
 for 'layer' are over and under. Coordinates x and y may be given to offset the

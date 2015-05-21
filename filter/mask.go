@@ -8,7 +8,7 @@ import (
 	"github.com/jangler/imp/util"
 )
 
-var maskHelp = `mask file
+var maskHelp = `mask <file>
 
 Multiply the alpha channel of the working image by the alpha channel from
 another image file. The images must have the same dimensions.`
